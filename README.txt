@@ -29,6 +29,9 @@ In order to use this plugin, you must have been accepted as a publisher into the
 
 == Changelog ==
 
+= 1.1.3 =
+* Added class for wordpress widget
+
 = 1.1.2 =
 * Cache busting for iframe fix
 
