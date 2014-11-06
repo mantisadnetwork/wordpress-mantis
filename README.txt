@@ -29,6 +29,9 @@ In order to use this plugin, you must have been accepted as a publisher into the
 
 == Changelog ==
 
+= 1.2.0 =
+* Support for content recommendation widget
+
 = 1.1.7 =
 * Removed elvis operator to support old PHP versions
 
