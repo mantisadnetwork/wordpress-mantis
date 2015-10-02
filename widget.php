@@ -23,6 +23,7 @@ class MantisAdsWidget extends WP_Widget
             );
 
             $class = '';
+            $style = '';
 
             if(isset($args['mobileFloat']) && $args['mobileFloat']){
                 $class = "mantis-float mantis-float-$args[mobileFloat]";
@@ -34,13 +35,17 @@ class MantisAdsWidget extends WP_Widget
                 $attrs['data-mantis-fixed'] = 'true';
             }
 
+            if(isset($args['center']) && $args['center']){
+                $style = 'style="text-align:center"';
+            }
+
             $attrs = implode(' ', array_map('mantis_attr_map', $attrs, array_keys($attrs)));
 
             do_action('mantis_before_widget');
 
             echo $args['before_widget'];
 
-            echo "<div class='mantis-ad $class'><div $attrs></div></div>";
+            echo "<div class='mantis-ad $class' $style><div $attrs></div></div>";
 
             echo $args['after_widget'];
 
