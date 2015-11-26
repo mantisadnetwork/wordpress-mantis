@@ -70,3 +70,19 @@ function mantis_ad_footer()
 		require(dirname(__FILE__) . '/html/sync.html');
 	}
 }
+
+function mantis_oembed(){
+    add_filter('oembed_fetch_url', function($provider, $url){
+        $site = get_option('mantis_site_id');
+
+        if($site && strpos($url, 'mantis.video') !== false){
+            return add_query_arg( 'property', $site, $provider );
+        }
+
+        return $provider;
+    }, 10, 2);
+
+    wp_oembed_add_provider( '#https?://(www\.)?mantis\.video/videos/.*#i', 'http://mantodea.mantisadnetwork.com/video/oembed', true );
+}
+
+add_action('init', 'mantis_oembed');
