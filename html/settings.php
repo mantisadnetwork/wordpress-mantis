@@ -35,6 +35,19 @@
 				</td>
 			</tr>
 
+			<tr valign="top">
+                <th scope="row">After Content Widget</th>
+                <td>
+                    <select name="mantis_after">
+                    	<option value="">Turn Off</option>
+                        <option value="after_content" <?php echo get_option('mantis_after') == 'after_content' ? 'selected="selected"' : ''; ?>>Show After Content</option>
+                        <option value="before_comments" <?php echo get_option('mantis_after') == 'before_comments' ? 'selected="selected"' : ''; ?>>Show Before Comments</option>
+                        <option value="after_comments" <?php echo get_option('mantis_after') == 'after_comments' ? 'selected="selected"' : ''; ?>>Show After Comments</option>
+                    </select>
+                    <p class="description">When enabled, a new area is added to your Appearance > Widget page allowing you to add additional zones using the MANTIS advertisement widget.</a></p>
+                </td>
+            </tr>
+
             <tr valign="top">
                 <th scope="row">Recommended Content Widget</th>
                 <td>

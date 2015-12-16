@@ -44,7 +44,7 @@ function mantis_recommend()
 
     switch ($location) {
         case 'after_content':
-            add_filter('the_content', 'mantis_recommend_after');
+            add_filter('the_content', 'mantis_recommend_after', 2);
             break;
         case 'before_comments':
         case 'after_comments':
