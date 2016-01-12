@@ -3,6 +3,7 @@
 <script type="text/javascript" data-cfasync="false">
 	var MANTIS_VIDEO = {
 		container: 'mantis_player',
+		property: '<?php echo $property ?>',
 		videoId: '<?php echo $id ?>'
 	};
 </script>
