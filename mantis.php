@@ -90,11 +90,17 @@ function mantis_oembed(){
 
 add_action('init', 'mantis_oembed');
 
+$mantis_shortcodes = 0;
+
 function mantis_video_shortcode($attrs){
+	global $mantis_shortcodes;
+
 	ob_start();
 
 	extract($attrs);
 
+	$mantis_shortcodes++;
+	
 	$property = get_option('mantis_site_id');
 
 	require(dirname(__FILE__) . '/html/video.php');
