@@ -8,19 +8,19 @@
 			margin-bottom: 50px !important;
 		}
 
-		.mantis-ad.mantis-float > div{
+		.mantis-display.mantis-float > div{
 			position: fixed;
 			text-align: center;
 			width: 100%;
 			z-index: 4000;
 		}
 
-		.mantis-ad.mantis-float-top > div{
+		.mantis-display.mantis-float-top > div{
 			top: 0;
 			left: 0;
 		}
 
-		.mantis-ad.mantis-float-bottom > div{
+		.mantis-display.mantis-float-bottom > div{
 			bottom: 0;
 			left: 0;
 		}

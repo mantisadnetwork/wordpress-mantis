@@ -45,7 +45,7 @@ class MantisAdsWidget extends WP_Widget
 
             echo $args['before_widget'];
 
-            echo "<div class='mantis-ad $class' $style><div $attrs></div></div>";
+            echo "<div class='mantis-display $class' $style><div $attrs></div></div>";
 
             echo $args['after_widget'];
 
