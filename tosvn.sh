@@ -24,11 +24,16 @@ svn update --depth=immediates tags/
 cd $CURRENTDIR
 
 echo "Exporting the HEAD of master from git to the trunk of SVN"
+
+rm -rf $SVNPATH/trunk/*
+
 git checkout-index -a -f --prefix=$SVNPATH/trunk/
 
 cd $SVNPATH
 
 cd trunk
+
+svn st | grep ! | cut -d! -f2| sed 's/^ *//' | sed 's/^/"/g' | sed 's/$/"/g' | xargs svn rm
 
 svn st | grep ^? | sed 's/?    //' | xargs svn add
 
