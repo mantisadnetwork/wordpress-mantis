@@ -104,7 +104,7 @@ function mantis_oembed_fetch($provider, $url){
 function mantis_oembed(){
     add_filter('oembed_fetch_url', 'mantis_oembed_fetch', 10, 2);
 
-    wp_oembed_add_provider( '#https?://(www\.)?mantis\.video/videos/.*#i', 'http://mantodea.mantisadnetwork.com/video/oembed', true );
+    wp_oembed_add_provider( '#https?://(www\.)?mantis\.video/videos/.*#i', 'https://mantodea.mantisadnetwork.com/video/oembed', true );
 }
 
 add_action('init', 'mantis_oembed');
