@@ -6,7 +6,7 @@ function mantis_recommend_html()
 
 	$site = get_option('mantis_site_id');
 
-	require(MANTIS_ROOT . '/html/recommend.php');
+	require(MANTIS_ROOT . '/html/publisher/recommend.php');
 
 	$html = ob_get_contents();
 

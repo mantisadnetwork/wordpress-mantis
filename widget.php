@@ -14,8 +14,8 @@ class MantisAdsWidget extends WP_Widget
         )));
 
         if ($args['zone']) {
-            if (!has_action('wp_footer', 'mantis_ad_footer')) {
-                add_action('wp_footer', 'mantis_ad_footer', 20);
+            if (!has_action('wp_footer', 'mantis_publisher_footer')) {
+                add_action('wp_footer', 'mantis_publisher_footer', 20);
             }
 
             $attrs = array(
@@ -57,7 +57,7 @@ class MantisAdsWidget extends WP_Widget
     {
         $zones = mantis_ad_zones();
 
-        require(MANTIS_ROOT . '/html/widgetform.php');
+        require(MANTIS_ROOT . '/html/publisher/widgetform.php');
     }
 
     public function update($new, $old)
@@ -76,12 +76,12 @@ function mantis_ad_zones()
 
     $zones = wp_cache_get('mantis_cache_zones');
 
-    if ($zones === false) {
+    if ($zones === false || count($zones) === 0) {
         $zones = array();
 
         try {
             $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, "http://mantodea.mantisadnetwork.com/wordpress/zones/$site");
+            curl_setopt($ch, CURLOPT_URL, "https://mantodea.mantisadnetwork.com/wordpress/zones/$site");
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             $data = curl_exec($ch);
             curl_close($ch);
@@ -95,7 +95,9 @@ function mantis_ad_zones()
             error_log($ex);
         }
 
-        wp_cache_set('mantis_cache_zones', $zones, '', 10);
+        if(count($zones) > 0){
+            wp_cache_set('mantis_cache_zones', $zones, '', 10);
+        }
     }
 
     return $zones;

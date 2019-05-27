@@ -3,7 +3,7 @@
 Plugin Name: Mantis Ad Network
 Plugin URI: http://wordpress.org/extend/plugins/mantis-ad-network/
 Description: Easily serve advertisements from the Mantis Ad Network on your website.
-Version: 1.5.6
+Version: 1.6.0
 Author: Mantis Ad Network
 Author URI: http://www.mantisadnetwork.com
 Author Email: contact@mantisadnetwork.com
@@ -38,14 +38,17 @@ require_once(MANTIS_ROOT . '/admin.php');
 require_once(MANTIS_ROOT . '/widget.php');
 require_once(MANTIS_ROOT . '/recommend.php');
 require_once(MANTIS_ROOT . '/after.php');
+require_once(MANTIS_ROOT . '/woocommerce.php');
 
 function mantis_always_footer()
 {
 	if (get_option('mantis_always')) {
-		if (!has_action('wp_footer', 'mantis_ad_footer')) {
-			add_action('wp_footer', 'mantis_ad_footer', 20);
+		if (!has_action('wp_footer', 'mantis_publisher_footer')) {
+			add_action('wp_footer', 'mantis_publisher_footer', 20);
 		}
 	}
+
+    add_action('wp_footer', 'mantis_advertiser_footer', 20);
 }
 
 add_action('init', 'mantis_always_footer');
@@ -53,7 +56,7 @@ add_action('init', 'mantis_always_footer');
 /**
  * Action is registered as wp_footer if at least one advertisement is on the page
  */
-function mantis_ad_footer()
+function mantis_publisher_footer()
 {	
 	$site = get_option('mantis_site_id');
 
@@ -61,15 +64,31 @@ function mantis_ad_footer()
 		return;
 	}
 
-	require(dirname(__FILE__) . '/html/config.php');
+	require(dirname(__FILE__) . '/html/publisher/config.php');
 
-	require(dirname(__FILE__) . '/html/styling.php');
+	require(dirname(__FILE__) . '/html/publisher/styling.php');
 
 	if (get_option('mantis_async')) {
-		require(dirname(__FILE__) . '/html/async.html');
+		require(dirname(__FILE__) . '/html/publisher/async.html');
 	} else {
-		require(dirname(__FILE__) . '/html/sync.html');
+		require(dirname(__FILE__) . '/html/publisher/sync.html');
 	}
+}
+
+/**
+ * Action is registered as wp_footer if advertiser has pixel configured
+ */
+function mantis_advertiser_footer()
+{
+    $advertiser = get_option('mantis_advertiser_id');
+
+    if (!$advertiser) {
+        return;
+    }
+
+    require(dirname(__FILE__) . '/html/advertiser/config.php');
+
+    require(dirname(__FILE__) . '/html/advertiser/async.html');
 }
 
 function mantis_oembed_fetch($provider, $url){
@@ -103,7 +122,7 @@ function mantis_video_shortcode($attrs){
 
 	$property = get_option('mantis_site_id');
 
-	require(dirname(__FILE__) . '/html/video.php');
+	require(dirname(__FILE__) . '/html/publisher/video.php');
 
 	$html = ob_get_contents();
 

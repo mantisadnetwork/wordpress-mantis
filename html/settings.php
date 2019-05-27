@@ -1,8 +1,8 @@
 <div class="wrap">
-	<h2>MANTIS configuration</h2>
-
 	<form method="post" action="options.php">
 		<?php settings_fields( 'mantis-settings' ); ?>
+
+        <h2>Publisher Configuration</h2>
 		
 		<table class="form-table">
 			<tr valign="top">
@@ -61,6 +61,19 @@
                 </td>
             </tr>
 		</table>
+
+
+        <h2>Advertiser Configuration</h2>
+
+        <table class="form-table">
+            <tr valign="top">
+                <th scope="row">Advertiser Identifier:</th>
+                <td>
+                    <input type="text" name="mantis_advertiser_id" value="<?php echo get_option('mantis_advertiser_id'); ?>" />
+                    <p class="description">This identifier can be found in the conversion tab of your <a href="https://admin.mantisadnetwork.com" target="_blank">MANTIS administrative panel.</a></p>
+                </td>
+            </tr>
+        </table>
 
 		<?php submit_button(); ?>
 	</form>

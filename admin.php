@@ -12,7 +12,7 @@ class MantisAdOptions
 	public function setup()
 	{
 		$isoptions = !isset($_GET['page']) || $_GET == 'mantis_ad_options';
-		$isset = get_option('mantis_site_id');
+		$isset = get_option('mantis_site_id') || get_option('mantis_advertiser_id');
 
 		if ($isoptions && !$isset):
 			?>
@@ -29,6 +29,7 @@ class MantisAdOptions
 	public function settings()
 	{
 		register_setting('mantis-settings', 'mantis_site_id');
+        register_setting('mantis-settings', 'mantis_advertiser_id');
 		register_setting('mantis-settings', 'mantis_async');
 		register_setting('mantis-settings', 'mantis_always');
         register_setting('mantis-settings', 'mantis_recommend');

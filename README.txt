@@ -1,8 +1,8 @@
 === MANTIS Ad Network ===
 Tags: mantis,ads,advertisement
 Requires at least: 3.7.0
-Tested up to: 4.3.1
-Stable tag: 1.5.6
+Tested up to: 5.2.1
+Stable tag: 1.6.0
 
 Easily serve advertisements from the MANTIS Ad Network on your website.
 
@@ -27,7 +27,12 @@ In order to use this plugin, you must have been accepted as a publisher into the
 2. Drag and drop widget to display on your website
 3. The end result
 
-== Changelog 
+== Changelog
+
+= 1.6.0 =
+* Support for advertisers to easily inject analytics pixel on website
+* Integration into woocommerce for revenue and transaction data
+* Fixed widget configuration for publishers
 
 = 1.5.6 =
 * Do not insert content recommendation widget on homepage

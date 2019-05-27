@@ -1,0 +1,4 @@
+[submodule "dev/plugins/woocommerce"]
+	path = dev/plugins/woocommerce
+	url = git@github.com:woocommerce/woocommerce.git
+	branch = 3.6.3
