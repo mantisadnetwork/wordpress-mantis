@@ -4,6 +4,7 @@ SVNURL="http://plugins.svn.wordpress.org/mantis-ad-network"
 README=`grep "^Stable tag:" README.txt | awk -F' ' '{print $NF}'`
 PHP=`grep "Version:" mantis.php | awk -F' ' '{print $NF}'`
 BRANCH=`git rev-parse --abbrev-ref HEAD`
+TAG=`git describe --abbrev=0 --tags`
 
 git fetch
 
@@ -17,6 +18,14 @@ if [ "$BRANCH" != "master" ]; then echo "You must be on the master branch."; exi
 if [[ `git status --porcelain` ]]; then echo "You must commit local git changes."; exit 1; fi
 
 if [ "$LOCAL" != "$REMOTE" ]; then echo "Your local commit version does not match remote"; exit 1; fi
+
+if [ "$TAG" != "$README" ]; then echo "You must tag the version in git first"; exit 1; fi
+
+git ls-remote origin refs/tags/$README >/dev/null 2>&1
+
+if [ ! $? -eq 0 ]; then
+	echo "Git tag has not been pushed to remote"
+fi
 
 grep "= $PHP =" README.txt >/dev/null 2>&1
 
@@ -59,3 +68,5 @@ fi
 
 echo "Removing temporary directory $SVNPATH"
 rm -rf $SVNPATH/
+
+git tag
