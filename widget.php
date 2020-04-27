@@ -31,10 +31,6 @@ class MantisAdsWidget extends WP_Widget
                 wp_enqueue_script('jquery');
             }
 
-            if(isset($args['fixed']) && $args['fixed']){
-                $attrs['data-mantis-fixed'] = 'true';
-            }
-
             if(isset($args['center']) && $args['center']){
                 $style = 'style="text-align:center"';
             }

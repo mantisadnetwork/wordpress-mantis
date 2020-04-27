@@ -1,8 +1,8 @@
 === MANTIS Ad Network ===
 Tags: mantis,ads,advertisement
 Requires at least: 3.7.0
-Tested up to: 5.2.1
-Stable tag: 1.6.1
+Tested up to: 5.4.0
+Stable tag: 1.7.0
 
 Easily serve advertisements from the MANTIS Ad Network on your website.
 
@@ -28,6 +28,9 @@ In order to use this plugin, you must have been accepted as a publisher into the
 3. The end result
 
 == Changelog
+
+= 1.7.0 =
+* Removing support for "Dynamicly resize ad" option
 
 = 1.6.1 =
 * Wordpress publish fix

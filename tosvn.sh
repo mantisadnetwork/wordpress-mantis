@@ -3,8 +3,20 @@ SVNPATH="/tmp/mantissvn"
 SVNURL="http://plugins.svn.wordpress.org/mantis-ad-network"
 README=`grep "^Stable tag:" README.txt | awk -F' ' '{print $NF}'`
 PHP=`grep "Version:" mantis.php | awk -F' ' '{print $NF}'`
+BRANCH=`git rev-parse --abbrev-ref HEAD`
+
+git fetch
+
+LOCAL=`git rev-parse HEAD`
+REMOTE=`git rev-parse @{u}`
 
 if [ "$README" != "$PHP" ]; then echo "Version in README.txt & mantis.php don't match. Exiting...."; exit 1; fi
+
+if [ "$BRANCH" != "master" ]; then echo "You must be on the master branch."; exit 1; fi
+
+if [[ `git status --porcelain` ]]; then echo "You must commit local git changes."; exit 1; fi
+
+if [ "$LOCAL" != "$REMOTE" ]; then echo "Your local commit version does not match remote"; exit 1; fi
 
 grep "= $PHP =" README.txt >/dev/null 2>&1
 
@@ -41,7 +53,7 @@ svn commit -m "Preparing for $PHP release"
 
 if [ $? -eq 0 ]; then
 	echo "Creating new SVN tag and committing it"
-	
+
 	svn copy $SVNURL/trunk/ $SVNURL/tags/$PHP/ -m "Tagging version $PHP"
 fi
 

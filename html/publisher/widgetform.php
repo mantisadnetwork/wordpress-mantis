@@ -14,12 +14,6 @@
 		</select>
 	</div>
     <div>
-        Responsive: <select name="<?php echo $this->get_field_name('fixed'); ?>">
-            <option value="">Dynamicly resize ad</option>
-            <option value="1" <?php echo isset($instance['fixed']) && $instance['fixed'] == '1' ? 'selected="selected"' : ''?>>Enforce exact ad size</option>
-        </select>
-    </div>
-    <div>
         Center: <select name="<?php echo $this->get_field_name('center'); ?>">
             <option value="">Align with layout</option>
             <option value="1" <?php echo isset($instance['center']) && $instance['center'] == '1' ? 'selected="selected"' : ''?>>Force center</option>
