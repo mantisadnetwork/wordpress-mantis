@@ -68,5 +68,3 @@ fi
 
 echo "Removing temporary directory $SVNPATH"
 rm -rf $SVNPATH/
-
-git tag
