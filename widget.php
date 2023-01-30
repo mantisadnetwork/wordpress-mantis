@@ -77,7 +77,7 @@ function mantis_ad_zones()
 
         try {
             $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, "https://mantodea.mantisadnetwork.com/wordpress/zones/$site");
+            curl_setopt($ch, CURLOPT_URL, "https://direct.mantisadnetwork.com/wordpress/zones/$site");
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             $data = curl_exec($ch);
             curl_close($ch);
