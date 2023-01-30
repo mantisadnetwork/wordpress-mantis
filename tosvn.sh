@@ -1,3 +1,5 @@
+set -e
+
 CURRENTDIR=`pwd`
 SVNPATH="/tmp/mantissvn"
 SVNURL="http://plugins.svn.wordpress.org/mantis-ad-network"
